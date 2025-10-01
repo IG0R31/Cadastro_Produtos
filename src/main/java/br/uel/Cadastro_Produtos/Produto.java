@@ -3,9 +3,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.util.Date;
 
 @Entity
 @Table(name = "produto")
@@ -16,9 +16,9 @@ public class Produto {
 
     @Column(name = "nome", nullable = false, length = 200)
     private String nome;
-    
+
     @Column(name = "preco", nullable = false)
-    private Double preco; 
+    private Double preco;
 
     @Column(name = "quantidade")
     private Integer quantidade;
@@ -34,10 +34,10 @@ public class Produto {
     public void setId(Long id){this.id = id;}
 
     public String getNome(){ return nome;}
-    public void setNome(){this.nome = nome;}
+    public void setNome(String nome){this.nome = nome;}
 
     public Double getPreco(){ return preco;}
-    public void setPreci(){this.preco = preco;}
+    public void setPreco(Double preco){this.preco = preco;}
 
     public Integer getQuantidade(){ return quantidade;}
     public void setQuantidade(Integer quantidade){this.quantidade = quantidade;}

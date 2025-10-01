@@ -1,7 +1,5 @@
-package br.uel.Cadastro_Produtos; 
+package br.uel.Cadastro_Produtos;
 
-import br.uel.Cadastro_Produtos.model.Produto;
-import br.uel.Cadastro_Produtos.service.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,29 +12,29 @@ public class ProdutoController{
     @Autowired
     private ProdutoService produtoService;
 
-    @GetMapping 
+    @GetMapping
     public String listarProdutos(Model model){
         List<Produto> produtos = produtoService.listarTodos();
-        model.addAtribute("produtos", produtos);
-        return "produtos/lista";
+        model.addAttribute("produtos", produtos);
+        return "lista";
     }
 
     @GetMapping("/novo")
-    public class mostrarFormulario(Model model){
+    public String mostrarFormulario(Model model){
         model.addAttribute("produto", new Produto());
-        return "produtos/formulario";
+        return "form";
     }
 
     @PostMapping("/salvar")
-    public String slavarProduto(@ModelAttribute Produto produto){
+    public String salvarProduto(@ModelAttribute Produto produto){
         produtoService.salvar(produto);
         return "redirect:/produtos";
     }
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicao(@PathVariable Long id, Model model){
-        Produto produto = produtoService.buscarPorId(id) .orElseThrow(()-> new IllegalArgumentException("ID inválido:"+ id));
+        Produto produto = produtoService.buscarPorId(id).orElseThrow(()-> new IllegalArgumentException("ID inválido:"+ id));
         model.addAttribute("produto", produto);
-        return "produto/formulario";
+        return "form";
     }
     @GetMapping("/excluir/{id}")
     public String excluirProduto(@PathVariable Long id){
@@ -48,7 +46,7 @@ public class ProdutoController{
         List<Produto> produtos = produtoService.buscarPorNome(nome);
         model.addAttribute("produtos", produtos);
         model.addAttribute("termoBusca", nome);
-        return "produtos/lista";
+        return "lista";
     }
 }
 

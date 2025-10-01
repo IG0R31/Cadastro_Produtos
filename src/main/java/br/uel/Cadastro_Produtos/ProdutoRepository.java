@@ -1,6 +1,5 @@
-package br.uel.Cadastro_Produtos.repository;
+package br.uel.Cadastro_Produtos;
 
-import br.uel.Cadastro_Produtos.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
