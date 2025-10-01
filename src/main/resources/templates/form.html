@@ -6,33 +6,33 @@
 <body>
     <h1 th:text="${produto.id != null} ? 'Editar Produto' : 'Novo Produto'"></h1>
     
-    <form th:action="@{/produtos/salvar}" th:object="${produto}" method="post">
+    <form th:action="@{/produto/salvar}" th:object="${produto}" method="post">
         <input type="hidden" th:field="*{id}">
-        
+
         <div>
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" th:field="*{nome}" required maxlength="200">
         </div>
-        
+
         <br>
-        
+
         <div>
             <label for="preco">Preço:</label><br>
             <input type="number" id="preco" th:field="*{preco}" step="0.01" min="0" required>
         </div>
-        
+
         <br>
-        
+
         <div>
             <label for="quantidade">Quantidade:</label><br>
             <input type="number" id="quantidade" th:field="*{quantidade}" min="0">
         </div>
-        
+
         <br>
-        
+
         <div>
             <button type="submit">Salvar</button>
-            <a th:href="@{/produtos}">Cancelar</a>
+            <a th:href="@{/produto}">Cancelar</a>
         </div>
     </form>
 </body>

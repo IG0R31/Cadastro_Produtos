@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/produtos")
+@RequestMapping("/produto")
 public class ProdutoController{
     @Autowired
     private ProdutoService produtoService;
 
-    @GetMapping
-    public String listarProdutos(Model model){
-        List<Produto> produtos = produtoService.listarTodos();
-        model.addAttribute("produtos", produtos);
+    @GetMapping("/listar")
+    public String listarProduto(Model model){
+        List<Produto> produto = produtoService.listarTodos();
+        model.addAttribute("produto", produto);
         return "lista";
     }
 
@@ -28,7 +28,7 @@ public class ProdutoController{
     @PostMapping("/salvar")
     public String salvarProduto(@ModelAttribute Produto produto){
         produtoService.salvar(produto);
-        return "redirect:/produtos";
+        return "redirect:/produto";
     }
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicao(@PathVariable Long id, Model model){
@@ -39,12 +39,12 @@ public class ProdutoController{
     @GetMapping("/excluir/{id}")
     public String excluirProduto(@PathVariable Long id){
         produtoService.excluir(id);
-        return "redirect:/produtos";
+        return "redirect:/produto";
     }
     @GetMapping("/buscar")
-    public String buscarProdutos(@RequestParam String nome, Model model){
-        List<Produto> produtos = produtoService.buscarPorNome(nome);
-        model.addAttribute("produtos", produtos);
+    public String buscarProduto(@RequestParam String nome, Model model){
+        List<Produto> produto = produtoService.buscarPorNome(nome);
+        model.addAttribute("produto", produto);
         model.addAttribute("termoBusca", nome);
         return "lista";
     }

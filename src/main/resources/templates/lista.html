@@ -6,15 +6,15 @@
 </head>
 <body>
     <div>
-        <a th:href="@{/produtos/novo}">Cadastrar Novo Produto</a>
+        <a th:href="@{/produto/novo}">Cadastrar Novo Produto</a>
     </div>
     <br>
 
     <div>
-        <form th:action="@{/produtos/buscar}" method="get">
+        <form th:action="@{/produto/buscar}" method="get">
             <input type="text" name="nome" placeholder="Buscar por nome">
             <button type="submit">Buscar</button>
-            <a th:href="@{/produtos}">Limpar</a>
+            <a th:href="@{/produto}">Limpar</a>
         </form>
     </div>
     <br>
@@ -30,18 +30,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="produto : ${produtos}">
+            <tr th:each="produto : ${produto}">
                 <td th:text="${produto.id}"></td>
                 <td th:text="${produto.nome}"></td>
                 <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2, 'POINT')}"></td>
                 <td th:text="${produto.quantidade}"></td>
                 <td>
-                    <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a>
-                    <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" 
+                    <a th:href="@{/produto/editar/{id}(id=${produto.id})}">Editar</a>
+                    <a th:href="@{/produto/excluir/{id}(id=${produto.id})}"
                        onclick="return confirm('Excluir este produto?')">Excluir</a>
                 </td>
             </tr>
-            <tr th:if="${produtos.empty}">
+            <tr th:if="${produto.empty}">
                 <td colspan="5">Nenhum produto encontrado</td>
             </tr>
         </tbody>
